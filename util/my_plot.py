@@ -3,6 +3,8 @@ import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 from keras.datasets import mnist
 from keras.datasets import fashion_mnist
+import tensorflow as tf
+
 
 
 
@@ -129,3 +131,12 @@ def generate_shift_fashion_mnist_data(n):
         return aa, bb        
 
 
+def layer(output_dim,input_dim,inputs, activation=None):
+    W = tf.Variable(tf.random_normal([input_dim, output_dim]))
+    b = tf.Variable(tf.random_normal([1, output_dim]))
+    XWb = tf.matmul(inputs, W) + b
+    if activation is None:
+        outputs = XWb
+    else:
+        outputs = activation(XWb)
+    return outputs
