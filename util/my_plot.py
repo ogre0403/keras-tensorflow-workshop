@@ -4,6 +4,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.datasets import mnist
 from keras.datasets import fashion_mnist
 import tensorflow as tf
+from pylab import *
 
 
 
@@ -140,3 +141,26 @@ def layer(output_dim,input_dim,inputs, activation=None):
     else:
         outputs = activation(XWb)
     return outputs
+
+
+def show_activation(activation,y_lim=5):
+    x=np.arange(-10., 10., 0.01)
+    ts_x = tf.Variable(x)
+    ts_y =activation(ts_x )
+    with tf.Session() as sess:
+        init = tf.global_variables_initializer()
+        sess.run(init)
+        y=sess.run(ts_y)
+    ax = gca()
+    ax.spines['right'].set_color('none')
+    ax.spines['top'].set_color('none')
+    ax.spines['bottom'].set_position(('data',0))
+    ax.spines['left'].set_position(('data',0))
+    ax.xaxis.set_ticks_position('bottom')
+    ax.yaxis.set_ticks_position('left')
+    lines=plt.plot(x,y)
+    plt.setp(lines, color='b', linewidth=3.0)
+    plt.ylim(y_lim*-1-0.1,y_lim+0.1) 
+    plt.xlim(-10,10) 
+
+    plt.show()      
