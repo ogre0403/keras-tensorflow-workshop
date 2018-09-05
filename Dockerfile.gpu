@@ -1,0 +1,20 @@
+FROM tensorflow/tensorflow:1.9.0-gpu
+
+
+RUN pip install keras jupyterthemes
+
+#RUN jt -t oceans16
+
+
+RUN rm /notebooks/*
+
+
+RUN curl -LOk https://github.com/ogre0403/keras-tensorflow-workshop/archive/master.zip && unzip master.zip -d /notebooks
+
+EXPOSE 6006
+# IPython
+EXPOSE 8888
+
+WORKDIR "/notebooks/keras-tensorflow-workshop-master"
+
+CMD ["/run_jupyter.sh", "--allow-root", "--NotebookApp.token=''"]
