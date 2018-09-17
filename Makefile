@@ -3,7 +3,7 @@ TAG = $(shell date '+%Y%m%d')
 build-dev-img:
 	docker build -t ogre0403/keras-tensorflow:$(TAG) .
 
-build-release-mg:
+build-release-img:
 	docker build -t nchcai/train:jimmy-nhri-$(TAG) -f Dockerfile.gpu .
 
 run-dev:
