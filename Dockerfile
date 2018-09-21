@@ -1,9 +1,10 @@
 FROM tensorflow/tensorflow:1.9.0
 
 
-RUN pip install keras jupyterthemes
+RUN pip install keras 
 
-RUN jt -t oceans16
+#RUN pip install jupyterthemes
+#RUN jt -t oceans16
 
 
 RUN rm /notebooks/*
